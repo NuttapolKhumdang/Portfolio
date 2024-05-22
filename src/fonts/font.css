@@ -1,0 +1,24 @@
+@font-face {
+    font-family: '2005_iannnnnCPU';
+    src: url('./2005_iannnnnCPU.ttf');
+}
+
+@font-face {
+    font-family: '2005_iannnnnAMD';
+    src: url('./2005_iannnnnAMD.ttf');
+}
+
+@font-face {
+    font-family: 'TAGameboy';
+    src: url('./TAGameboy-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'TA8bit';
+    src: url('./TA\ 8\ bit.ttf');
+}
+
+@font-face {
+    font-family: 'TA16bit';
+    src: url('./TA16BIT-Regular.ttf');
+}

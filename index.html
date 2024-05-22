@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/meta/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/meta/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/meta/favicon-16x16.png" />
+    <link rel="manifest" href="/meta/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=La+Belle+Aurore&family=Major+Mono+Display&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai+Looped:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> -->
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/src/fonts/font.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: "selector",
+            theme: {
+                fontFamily: {
+                    display: ["Major Mono Display", "monospace"],
+                    sans: ["Poppins", "'IBM Plex Sans Thai Looped'", "sans-serif"],
+                    mono: ["DM Mono", "monospace"],
+                    monot: ["'IBM Plex Sans Thai Looped'", "monospace"],
+                    cursive: ["La Belle Aurore", "cursive"],
+                    space: ["Space Mono", "monospace"],
+                    ps2p: ["'Press Start 2P'", "monospace"],
+                    tagb: ["'TAGameboy'", "monospace"],
+                },
+            },
+        };
+    </script>
+
+    <script>
+        const urlQuery = new URLSearchParams(window.location.search);
+        const portalId = urlQuery.get("portal") ?? "default";
+        const facultyId = urlQuery.get("faculty") ?? "default";
+
+        const portalDict = {
+            default: "global",
+            kku: "kku",
+            cmu: "cmu",
+        };
+        const facultyDict = {
+            default: "cs",
+            cs: "cs",
+        };
+
+        const srcDir = portalDict[portalId] ?? "global";
+        const faculty = facultyDict[facultyId] ?? "cs";
+    </script>
+
+    <title>Nuttapol Khumdang</title>
+</head>
+
+<body class="mx-auto overflow-x-hidden dark:bg-zinc-900 dark:text-white cursor-default">
+    <main class="mx-auto h-dvh max-w-5xl">
+        <div class="relative h-full lg:static lg:grid lg:grid-cols-2">
+            <header class="absolute bottom-0 flex w-full flex-col justify-end gap-4 bg-white pb-4 pt-8 lg:static lg:py-16 dark:bg-zinc-900">
+                <div class="flex flex-col items-center justify-center gap-8 lg:grid lg:grid-cols-[max-content_1fr] lg:place-items-center lg:gap-0">
+                    <p class="font-display text-6xl">Nuttapol<br />Khumdang</p>
+
+                    <a class="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full duration-150 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">
+                        <span class="material-icons-round"> expand_more </span>
+                    </a>
+                </div>
+            </header>
+            <img src="/src/0.jpg" alt="profile" class="h-full max-h-dvh w-full object-cover" />
+        </div>
+    </main>
+
+    <nav class="sticky top-0 z-50 flex h-max items-center justify-center bg-white">
+        <div class="flex w-full max-w-5xl flex-row items-center justify-between border-b border-zinc-100 px-8 py-2 lg:px-0">
+            <header class="font-display leading-none">
+                Nuttapol<br />Khumdang
+            </header>
+
+            <menu class="flex flex-row items-center justify-center font-mono *:px-2 *:duration-150">
+                <a href="https://github.com/NuttapolKhumdang" target="_blank" class="flex items-center hover:bg-black hover:text-white">Github<span class="font-space text-lg">/></span></a>
+            </menu>
+        </div>
+    </nav>
+
+    <main class="mx-auto h-dvh w-full max-w-5xl">
+        <div class="relative flex h-dvh max-h-dvh items-center justify-center" id="portpreview">
+            <menu class="absolute left-0 top-0 flex h-dvh w-full items-center justify-between">
+                <button id="prev" class="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full duration-150 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">
+                    <span class="material-icons-round">chevron_left</span>
+                </button>
+
+                <button id="next" class="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full duration-150 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">
+                    <span class="material-icons-round">chevron_right</span>
+                </button>
+            </menu>
+            <img src="#" loading="lazy" alt="portfolio" class="h-dvh w-max object-contain py-12 sm:z-20 md:h-4/5 md:py-0 lg:max-w-4xl" />
+        </div>
+
+        <script async>
+            class PreviewImage {
+                constructor(container = document.getElementById(), imagesrc = []) {
+                    this.container = container;
+                    this.imagesrc = imagesrc;
+                    this.index = 0;
+                    this.length = imagesrc.length;
+                    this.init();
+                }
+
+                init() {
+                    this.set(this.imagesrc[0]);
+
+                    this.container
+                        .querySelector("button#next")
+                        .addEventListener("click", () => this.next());
+                    this.container
+                        .querySelector("button#prev")
+                        .addEventListener("click", () => this.prev());
+                }
+
+                prev() {
+                    this.index = this.index - 1 > -1 ? this.index - 1 : this.length - 1;
+                    this.render();
+                }
+
+                next() {
+                    this.index = this.index + 1 > this.length - 1 ? 0 : this.index + 1;
+                    this.render();
+                }
+
+                render() {
+                    const src = this.imagesrc[this.index];
+                    this.set(src);
+                }
+
+                set(src) {
+                    this.container.querySelector("img").src = src;
+                }
+            }
+        </script>
+
+        <script>
+            const portfolio_imgsrc = [
+                `/src/${srcDir}/portfolio/${faculty}/1.png`,
+                `/src/${srcDir}/portfolio/${faculty}/2.png`,
+                `/src/${srcDir}/portfolio/${faculty}/3.png`,
+                `/src/${srcDir}/portfolio/${faculty}/4.png`,
+                `/src/${srcDir}/portfolio/${faculty}/5.png`,
+                `/src/${srcDir}/portfolio/${faculty}/6.png`,
+                `/src/${srcDir}/portfolio/${faculty}/7.png`,
+            ];
+
+            const portfolio_preview = document.getElementById("portpreview");
+            const PortPreviewImage = new PreviewImage(
+                portfolio_preview,
+                portfolio_imgsrc,
+            );
+        </script>
+    </main>
+
+    <header class="mx-auto flex h-dvh w-full max-w-5xl flex-col items-center justify-center gap-6">
+        <h1 class="font-display text-5xl">projects</h1>
+        <p class="text-center max-w-4xl font-mono px-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, possimus aut! Sit impedit inventore laudantium hic perferendis repudiandae dolores deserunt voluptates sequi quam voluptatem, esse assumenda at cum? Eligendi, nihil.</p>
+    </header>
+
+    <main class="relative flex h-max w-full flex-col items-center justify-center gap-6 py-16 text-white px-8 lg:px-0">
+        <h1 class="py-16 text-3xl text-center font-ps2p">The Action MMO Game</h1>
+        <img src="/src/mmo/resource/grassbg.png" class="absolute left-0 top-0 -z-10 h-full w-full object-cover" />
+
+        <section class="relative flex w-full max-w-5xl items-center justify-center">
+            <video id="gmmo-vid" src="/src/mmo/screen/gameplay.mp4" loop class="rounded-lg shadow-2xl aspect-video w-full cursor-pointer"></video>
+
+            <div id="gmmo-cot" class="absolute top-0 left-0 w-full h-full flex items-center justify-center z-10 cursor-pointer">
+                <div class="w-16 h-16 flex items-center justify-center rounded-full bg-white text-black shadow-lg"><span class="material-icons-round">play_arrow</span></div>
+            </div>
+
+            <script>
+                const gmmp_vid = document.getElementById("gmmo-vid");
+                const gmmo_cot = document.getElementById("gmmo-cot");
+
+                gmmp_vid.addEventListener("click", () => {
+                    gmmp_vid.pause();
+                    gmmo_cot.classList.remove('hidden');
+                });
+
+                gmmo_cot.addEventListener("click", () => {
+                    gmmp_vid.play();
+                    gmmo_cot.classList.add('hidden');
+                })
+            </script>
+        </section>
+
+        <article class="flex flex-col w-full max-w-5xl py-8 gap-4 text-base font-tagb" id="gmmo-arc">
+            <a href="https://godotengine.org" target="_blank" class="w-max mx-auto text-yellow-300">
+                <img src="/src/mmo/logo_large_monochrome_dark.svg" alt="" class="h-36 object-contain w-max">
+            </a>
+
+            <div class="flex items-center justify-end w-full">
+                <div class="flex flex-row items-center justify-center gap-2 h-max leading-none" id="gmmo-arc-ftype">
+                    <p class="font-ps2p text-base font-normal">A</p>
+                    <button onclick="gmmo_ftype_toggle()" class="flex items-center justify-center"><span class="material-icons-round">toggle_off</span></button>
+                    <p class="font-monot text-lg font-bold">A</p>
+
+                    <script>
+                        const gmmo_arc = document.getElementById("gmmo-arc");
+                        const gmmo_arc_ftype = document.getElementById("gmmo-arc-ftype");
+                        const gmmo_ftype_toggle = () => {
+                            const i = gmmo_arc_ftype.querySelector("span");
+                            const isBitfont = i.innerHTML == "toggle_off";
+                            i.innerHTML = isBitfont ? 'toggle_on' : 'toggle_off';
+
+                            if (isBitfont) {
+                                gmmo_arc.classList.remove("font-tagb");
+                                gmmo_arc.classList.add("font-monot", "font-bold", "text-xl");
+                            } else {
+                                gmmo_arc.classList.add("font-tagb");
+                                gmmo_arc.classList.remove("font-monot", "font-bold", "text-xl");
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <h1 class="text-2xl py-4 leading-10">เกมแรกจากการศึกษา GODOT Engine</h1>
+
+            <p class="leading-relaxed">เป็นโปรเจคที่ทำให้ได้เรียนรู้กระบวนการทำงานในการสร้างเกม การกำหนดการทำงานของตัวละคร
+                และยังได้เรียนรู้พื้นฐานการทำงานของ Game Engine ได้เป็นอย่างดี
+            </p>
+            <p class="leading-relaxed">แต่การทำงานกับภาษาใหม่อย่าง GDScript เป็นเรื่องที่ท้าทาย เนื่องจากรูปแบบภาษาที่เปลี่ยนไปเป็นอย่างมาก
+                และช่วงที่เริ่มศึกษาก็เป็นช่วงเวลาที่มีการเปลี่ยนแปลงครั้งใหญ่ของ GODOT Engine เนื่องจากการอัพเดตเวอร์ชั่นหลัก
+                ทำให้บทเรียนที่ทำตามอยู่นั้นเป็น Engine เวอร์ชั่นเก่า จึงต้องมีการแปลงคำสั่งจากเวอร์ชั่นเดิม ซึ่งเป็นคำสั่งของ GODOT Engine เวอร์ชั่น 3 สู่คำสั่งของ GODOT Engine เวอร์ชั่น 4 เพื่อให้ตัวเกมทำงานได้อย่างสมบูรณ์
+            </p>
+
+            <p class="leading-relaxed">
+                ขอบคุณบทเรียน
+                <a href="https://youtube.com/playlist?list=PL9FzW-m48fn2SlrW0KoLT4n5egNdX-W9a&si=S4yCoNz3Kk4gdgsv" target="_blank" class="hover:text-[#ff8e99] duration-150 underline-offset-2">&lt; Godot Action RPG Series &gt;</a>
+                จาก
+                <a href="https://www.youtube.com/@uheartbeast" target="_blank" class="hover:text-[#ff8e99] duration-150 underline-offset-2">&lt; Heartbeast &gt;</a>
+                ที่มอบความรู้และความสนุกสนานในการเรียนรู้ครั้งนี้
+            </p>
+        </article>
+    </main>
+
+    <footer class="mx-auto max-w-5xl border-t border-t-zinc-100 py-12 mt-16">
+        <div class="flex h-full flex-col items-center justify-center lg:flex-row">
+            <header class="flex w-full flex-col justify-end gap-4 bg-white py-16 dark:bg-zinc-900">
+                <div class="flex flex-col items-center justify-center gap-8 lg:grid lg:grid-cols-[max-content_1fr] lg:place-items-center lg:gap-0">
+                    <p class="font-display text-6xl">Nuttapol<br />Khumdang</p>
+                </div>
+            </header>
+
+            <figcaption class="font-mono text-sm">
+                <p>Design by Nuttapol Khumdang in Thailand</p>
+                <p>&copy; Nuttapol Khumdang, 2024</p>
+
+                <nav class="my-2">
+                    <!-- <a href="" class="hover:underline">Open-Source Licences</a> -->
+                    <a href="" class="hover:underline">ใบอนุญาตโอเพ่นซอร์ส</a>
+                </nav>
+            </figcaption>
+        </div>
+    </footer>
+
+    <main id="img-preview-images-container" class="fixed left-0 top-0 z-50 hidden h-dvh w-dvw bg-zinc-500 dark:bg-zinc-900">
+        <img src="#ignore" alt="full page view picture" class="h-full w-full object-contain" />
+    </main>
+    <script>
+        class FullScreenImage {
+            constructor(
+                container = document.getElementById("img-preview-images-container"),
+            ) {
+                this.container = container;
+                this.container.onclick = () => this.close();
+            }
+
+            close() {
+                this.container.classList.add("hidden");
+                this.set("#");
+            }
+
+            render(src) {
+                this.set(src);
+                this.container.classList.remove("hidden");
+            }
+
+            set(src) {
+                this.container.querySelector("img").src = src;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const FSI = new FullScreenImage();
+
+            document.querySelectorAll("img").forEach((img) => {
+                if (!img.src.includes("#ignore") || !img.id.includes('ignore'))
+                    img.onclick = () => FSI.render(img.src);
+            });
+        });
+    </script>
+</body>
+
+</html>
