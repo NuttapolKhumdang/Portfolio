@@ -173,8 +173,17 @@
     </header>
 
     <main class="mx-auto grid grid-cols-[max-content_1fr] gap-8 h-max w-full max-w-5xl flex-col py-16 px-8 lg:px-0">
-        <img src="/src/0.jpg" alt="personal music album picture" class="aspect-square h-96 object-cover">
-        <section class="flex flex-col gap-4" id="Audio_Container"></section>
+        <img src="/src/Lucid Dream's Picture.png" alt="personal music album picture"
+            class="aspect-square h-96 object-cover rounded-lg">
+
+        <section class="flex flex-col gap-4">
+            <header>
+                <h1 class="font-mono text-4xl">Lucid Dreams</h1>
+                <p class="font-mono text-base leading-snug py-2">ไม่ว่าจะมีความสุขเท่าใด &mdash;
+                    สุดท้ายมันก็แค่ความฝันที่สุดท้ายมันก็ต้องจบลง</p>
+            </header>
+            <div class="flex flex-col gap-4" id="Audio_Container"></div>
+        </section>
     </main>
 
     <template id="_t_AudioMusicList">
@@ -209,7 +218,6 @@
                     <span class="font-mono" id="Audio--TrackTime"></span>
                 </div>
             </header>
-
         </div>
     </section>
 
@@ -252,6 +260,7 @@
 
             Play(trackIndex) {
                 if (this.currentTrackIndex === trackIndex);
+                if (this.currentTrack["TimelineWorker"]) clearInterval(this.currentTrack["TimelineWorker"]);
 
                 this.currentTrackIndex = trackIndex;
                 const source = this.track[trackIndex];
@@ -267,10 +276,10 @@
 
                     const minute = ~~(this.player.currentTime / 60);
                     const sec = ~~(this.player.currentTime % 60);
-                    this.components["time"].innerHTML = minute + ':' + (sec < 10 ? '0' + sec : sec);
+                    this.components["time"].innerHTML = minute + '.' + (sec < 10 ? '0' + sec : sec);
 
-                    if (this.player.ended) this.Close();
-                }, 500);
+                    if (this.player.ended) this.Pause();
+                }, 1000);
             }
 
             Pause() {
@@ -282,7 +291,6 @@
             Close() {
                 this.controller.classList.add("-bottom-96");
                 this.controller.classList.remove("bottom-0");
-
             }
 
             Open() {
