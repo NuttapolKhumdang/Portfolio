@@ -268,7 +268,9 @@
                     const minute = ~~(this.player.currentTime / 60);
                     const sec = ~~(this.player.currentTime % 60);
                     this.components["time"].innerHTML = minute + ':' + (sec < 10 ? '0' + sec : sec);
-                }, 250);
+
+                    if (this.player.ended) this.Close();
+                }, 500);
             }
 
             Pause() {
@@ -339,43 +341,6 @@
             </figcaption>
         </div>
     </footer>
-
-    <!-- <main id="img-preview-images-container" class="fixed left-0 top-0 z-50 hidden h-dvh w-dvw bg-zinc-500">
-        <img src="#ignore" alt="full page view picture" class="h-full w-full object-contain" />
-    </main>
-    <script>
-        class FullScreenImage {
-            constructor(
-                container = document.getElementById("img-preview-images-container"),
-            ) {
-                this.container = container;
-                this.container.onclick = () => this.close();
-            }
-
-            close() {
-                this.container.classList.add("hidden");
-                this.set("#");
-            }
-
-            render(src) {
-                this.set(src);
-                this.container.classList.remove("hidden");
-            }
-
-            set(src) {
-                this.container.querySelector("img").src = src;
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const FSI = new FullScreenImage();
-
-            document.querySelectorAll("img").forEach((img) => {
-                if (!img.src.includes("#ignore") || !img.id.includes('ignore'))
-                    img.onclick = () => FSI.render(img.src);
-            });
-        });
-    </script> -->
 </body>
 
 </html>
